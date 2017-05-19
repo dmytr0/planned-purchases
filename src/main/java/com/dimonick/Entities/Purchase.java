@@ -13,7 +13,10 @@ public class Purchase {
     private String currency;
     private String image;
     private String name;
+    private String category;
     private String urls;
+    @Column(columnDefinition="default '3'")
+    private Integer priority;
 
     public Long getId() {
         return id;
@@ -47,7 +50,6 @@ public class Purchase {
         this.name = name;
     }
 
-    @OneToMany(mappedBy = "purchase", cascade = CascadeType.ALL)
     public String getUrls() {
         return urls;
     }
@@ -62,5 +64,21 @@ public class Purchase {
 
     public void setCurrency(String currency) {
         this.currency = currency;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public Integer getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Integer priority) {
+        this.priority = priority;
     }
 }
