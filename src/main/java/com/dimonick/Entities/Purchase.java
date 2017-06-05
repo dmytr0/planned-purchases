@@ -1,5 +1,7 @@
 package com.dimonick.Entities;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,14 +11,16 @@ public class Purchase {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-    private Float amount;
-    private String currency;
+    private Float amount = 0.00f;
+    private String currency = "₴";
     private String image;
-    private String name;
-    private String category;
+    private String name = "undefined";
+    @Lob
+    @Type(type = "org.hibernate.type.TextType")
+    private String description = "";
+    private String category= "default";
     private String urls;
-    @Column(columnDefinition="default '3'")
-    private Integer priority;
+    private Integer priority = 3;
 
     public Long getId() {
         return id;
@@ -80,5 +84,28 @@ public class Purchase {
 
     public void setPriority(Integer priority) {
         this.priority = priority;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Purchase{" +
+                "\nid=" + id +
+                ",\n amount=" + amount +
+                ",\n currency='" + currency + '\'' +
+                ",\n image='" + image + '\'' +
+                ",\n name='" + name + '\'' +
+                ",\n description='" + description + '\'' +
+                ",\n category='" + category + '\'' +
+                ",\n urls='" + urls + '\'' +
+                ",\n priority=" + priority +
+                '}';
     }
 }

@@ -45,12 +45,10 @@ public class PurchaseService {
         return repository.save(purchase);
     }
 
-    public Purchase update(long id,Purchase purchase){
+    public Purchase update(Long id, Purchase purchase){
+        if(id == null || id <= 0) return null;
         Purchase purchaseById = getPurchaseById(id);
         if(purchaseById == null) return null;
-
-
-
         return repository.save(purchase);
     }
 
